@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "fortran: compile current file",
+            "type": "shell",
+            "command": "gfortran",
+            "args": [
+                "-g",
+                "-fbacktrace",
+                "-fcheck=all",
+                "-Wall",
+                "-o",
+                "${workspaceFolder}/build/${fileBasenameNoExtension}",
+                "${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "fortran: build and run",
+            "dependsOn": "fortran: compile current file",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/${fileBasenameNoExtension}",
+            "group": "none",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        }
+    ]
+}
