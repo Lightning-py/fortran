@@ -2,7 +2,7 @@ import math
 
 
 def f(x):
-    if abs(x) < 1e-10:
+    if abs(x) < 1e-5:
         return 6.166177
     elif x < 0:
         # return x * 30 * math.pi / 180

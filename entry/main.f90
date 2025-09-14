@@ -19,7 +19,6 @@ program hello_world
         x_i = x_i + h
     end do
 
-    print *, "Sum", sum
 
 contains 
     function f(x) result(value)
@@ -32,7 +31,8 @@ contains
         if (abs(x) < 1e-5) then
             value = 6.166177_sp
         else if (x < 0.0_sp) then
-            value = (2.0_sp / 3.0_sp) ** (n / 7.0_sp) * -abs(x - 2_sp) ** (1.0_sp / 5.0_sp) * cos(x * pi / 6.0_sp)
+            value = (2.0_sp / 3.0_sp) ** (n / 7.0_sp) * -abs(x - 2_sp) ** (1.0_sp / 5.0_sp) & 
+            * cos((x * 180.0 / pi * 30.0) * pi / 180.0_sp)
         else
             if (x >= 1.0_sp) then
                 value = sin(x * pi / 3.0_sp)
