@@ -9,7 +9,9 @@ program fourth
 
     integer*8 :: count
 
-    eps = 0.1   
+    eps = 0.000001   
+
+    value = 0
 
     counter = 1
     sum1 = 0
@@ -21,20 +23,20 @@ program fourth
 
     flag = .FALSE.
 
-    do while (abs(sum1 - sum2 - pi) > eps)
+    do while (4.0 / counter > eps)
         if (flag) then
-            ! value = value - 4.0 / counter
-            sum2 = sum2 + 4.0 / counter
+            value = value - 4.0 / counter
+            ! sum2 = sum2 + 4.0 / counter
         else
-            ! value = value + 4.0 / counter
-            sum1 = sum1 + 4.0 / counter
+            value = value + 4.0 / counter
+            ! sum1 = sum1 + 4.0 / counter
         end if
 
         counter = counter + 2
         flag = .not. flag
     end do
         
-    write (*, *) "sum = ", sum1 - sum2, " ; steps = ", int(counter) / 2
+    write (*, *) "sum = ", value, " ; steps = ", int(counter) / 2
 
 
     ! 3 + 4 * (1 / (2 * 3 * 4) - 1 / (4 * 5 * 6) + ...)
@@ -44,7 +46,7 @@ program fourth
     flag = .FALSE.
 
 
-    do while (abs(3.0 + 4.0 * sum_second - pi) > eps)
+    do while (1.0 / (counter * (counter + 1) * (counter + 2)) > eps)
         if (flag) then
             sum_second = sum_second - 1.0 / (counter * (counter + 1) * (counter + 2))
         else
@@ -63,7 +65,7 @@ program fourth
     sum_third = 0.0
     count = 1
 
-    do while (abs( sqrt(sum_third * 6.0) - pi) > eps )
+    do while (1.0 / real(count * count) > eps )
         sum_third = sum_third + 1 / real(count * count)
         count = count + 1
     end do
